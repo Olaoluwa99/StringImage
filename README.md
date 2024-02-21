@@ -20,12 +20,12 @@ ImageID is an innovative Android library designed to simplify profile image gene
 
 ```groovy
 dependencyResolutionManagement {
-		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-		repositories {
-			mavenCentral()
-			maven { url 'https://jitpack.io' }
-		}
+	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	repositories {
+		mavenCentral()
+		maven { url 'https://jitpack.io' }
 	}
+}
 ```
 
 2. Add the dependency to your project's `build.gradle` file:
@@ -42,18 +42,7 @@ dependencies {
 val imageId = ImageId()
 ```
 
-### Generating Profile Images
-
-```kotlin
-//Generate bitmap from ID
-val bitmap = imageId.getImageFromId(imageId)
-val profileImage = ImageID.generateProfileImage(userID)
-imageView.setImageBitmap(profileImage)
-```
-Replace `"user123"` with the actual user ID string.
-
-#### Generating Profile Images
-
+#### Creating ImageID
 ```kotlin
 //Create ImageID
 imageId.createUserId(
@@ -63,17 +52,39 @@ imageId.createUserId(
         userId = 123456789,
         shuffleSeed = 123456L
 )
+//Input 'Rgb' values for colors to generate ID string.
 ```
-Input `"Rgb"` values for colors to generate ID string.
 
-### Generating Profile Images
+#### Generating Profile Image
+```kotlin
+//Generate bitmap from ID
+val bitmap = imageId.getImageFromId(imageId)
+val profileImage = ImageID.generateProfileImage(userID)
+imageView.setImageBitmap(profileImage)
+```
 
+#### Retrieving ID values
 ```kotlin
 //Retrieve values from Id
-val task: Task<Text> = imageId.retrieveIdByImage(userImage: Bitmap)
-```
-Replace `"user123"` with the actual user ID string.
+val result: Task<Text> = imageId.retrieveIdByImage(userImage: Bitmap)
 
+val fullText = ""
+val result = idImage.retrieveIdByImage(profileImageBitmap)
+
+result.addOnSuccessListener {
+	it.textBlocks[0].text	//Main Text
+	it.textBlocks[1].text	//UserId
+	it.textBlocks[2].text	//User color code - (rgbStart - rgbEnd)
+	it.textBlocks[3].text	//User shuffleSeed
+
+	//Full text on Image
+	for (block in it.textBlocks) {
+		val blockText = block.text
+		testResult = "$fullText$blockText".replace(" ", "")
+	}
+}
+
+```
 
 
 ## Use Cases
@@ -83,10 +94,6 @@ Replace `"user123"` with the actual user ID string.
 - **Dating Apps:** Provide users with distinctive avatars without compromising their privacy or requiring photo uploads.
 
 - **E-commerce Platforms:** Streamline user registration and enhance privacy by generating unique avatars for e-commerce customers.
-
-## Documentation
-
-For detailed documentation, code samples, and installation instructions, please refer to the [Wiki](https://github.com/yourusername/ImageID/wiki).
 
 ## Contributing
 
