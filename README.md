@@ -32,25 +32,49 @@ dependencyResolutionManagement {
 
 ```groovy
 dependencies {
-	        implementation 'com.github.Olaoluwa99:StringImage:1.0.0'
-	}
+	implementation 'com.github.Olaoluwa99:StringImage:1.0.0'
+}
 ```
 
 3. Initialize ImageID in your app:
 
 ```kotlin
-ImageID.initialize(context)
+val imageId = ImageId()
 ```
 
 ### Generating Profile Images
 
 ```kotlin
-val userID = "user123"
+//Generate bitmap from ID
+val bitmap = imageId.getImageFromId(imageId)
 val profileImage = ImageID.generateProfileImage(userID)
 imageView.setImageBitmap(profileImage)
 ```
-
 Replace `"user123"` with the actual user ID string.
+
+#### Generating Profile Images
+
+```kotlin
+//Create ImageID
+imageId.createUserId(
+        mainText = "Hello",
+        startColorRed = 200, startColorGreen = 124, startColorBlue = 004,
+        endColorRed = 024, endColorGreen = 123, endColorBlue = 094,
+        userId = 123456789,
+        shuffleSeed = 123456L
+)
+```
+Input `"Rgb"` values for colors to generate ID string.
+
+### Generating Profile Images
+
+```kotlin
+//Retrieve values from Id
+val task: Task<Text> = imageId.retrieveIdByImage(userImage: Bitmap)
+```
+Replace `"user123"` with the actual user ID string.
+
+
 
 ## Use Cases
 
