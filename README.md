@@ -16,15 +16,27 @@ ImageID is an innovative Android library designed to simplify profile image gene
 
 ### Integration
 
-1. Add the ImageID dependency to your project's `build.gradle` file:
+1. Add the JitPack repository to your project's `build.gradle` file:
+
+```groovy
+dependencyResolutionManagement {
+		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+		repositories {
+			mavenCentral()
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+2. Add the dependency to your project's `build.gradle` file:
 
 ```groovy
 dependencies {
-    implementation 'com.example:imageid:1.0.0'
-}
+	        implementation 'com.github.Olaoluwa99:StringImage:1.0.0'
+	}
 ```
 
-2. Initialize ImageID in your app:
+3. Initialize ImageID in your app:
 
 ```kotlin
 ImageID.initialize(context)
