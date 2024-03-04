@@ -47,6 +47,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("com.google.mlkit:text-recognition:16.0.0")
     implementation("androidx.compose.ui:ui-graphics:1.6.0")
     implementation("androidx.compose.ui:ui:1.6.0")
@@ -60,7 +61,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.github.Olaoluwa99"
             artifactId = "id-image"
-            version = "1.0.0"
+            version = "1.0.1"
 
             afterEvaluate {
                 from(components["release"])
